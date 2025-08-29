@@ -1,0 +1,436 @@
+:root { 
+  --bg: #fdf6ec;   /* Light beige background */
+  --card: #fff;
+  --accent: #d9480f; /* Accent orange */
+}
+
+/* Global */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg);
+  color: #111;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* 🔍 Search Bar */
+.searchbar {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.searchbar input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.searchbar button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.searchbar button:hover {
+  opacity: 0.9;
+}
+
+/* 🥘 Recipe Grid */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch; /* 🔥 keeps cards same height */
+  margin-top: 2rem;
+}
+
+/* 📌 Recipe Card */
+.food-card {
+  display: flex;
+  flex-direction: column;
+  height: 420px; /* 🔥 Fixed height for uniform card sizes */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: #fff;
+  transition: transform 0.2s ease;
+  text-align: center;
+  position: relative;
+}
+
+.food-card:hover {
+  transform: translateY(-5px);
+}
+
+.food-image {
+  width: 100%;
+  height: 200px; /* 🔥 Fixed height for all images */       
+  object-fit: cover; /* Maintains aspect ratio while cropping to fit */   
+  border-radius: 12px 12px 0 0;
+}
+
+.food-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+
+.food-info h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Align content in card vertically */
+.food-info-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 🔥 Distributes content evenly */
+  padding: 12px;
+  text-align: left;
+  flex: 1; /* 🔥 Takes remaining space after image */
+  height: 220px; /* 🔥 Fixed height for content area (420px total - 200px image) */
+}
+
+/* Recipe title styling */
+.food-info-column h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.3;
+  height: 2.6em;
+}
+
+/* 📜 Recipe Description */
+.food-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 8px 0 12px;
+  line-height: 1.4;
+  text-align: left;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100px;
+}
+
+/* 🔘 View Recipe Button */
+.view-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(90deg, #0038a8 0%, #ce1126 100%);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background 0.2s, transform 0.2s ease;
+  align-self: stretch; 
+  margin-top: auto; 
+  text-align: center;
+}
+
+.view-btn:hover {
+  background: linear-gradient(90deg, #002a7a 0%, #a00e1f 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 56, 168, 0.3);
+}
+
+.recipe-description {
+  color: #666;
+  font-size: 0.9em;
+  margin: 8px 0 12px 0;
+  line-height: 1.4;
+}
+
+/* ✅ Bottom buttons aligned in one row */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* ✅ Expand view button in favorites */
+.view-recipe-btn.expand {
+  flex: 1;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* ✅ Heart button stays fixed size */
+.heart-btn {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.heart-btn,
+.small-heart {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.view-btn,
+.view-recipe-btn {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+}
+
+.view-recipe-btn {
+  background: linear-gradient(90deg, #0038a8 0%, #ce1126 100%);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s ease;
+}
+
+.view-recipe-btn:hover {
+  background: linear-gradient(90deg, #002a7a 0%, #a00e1f 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 56, 168, 0.3);
+}
+
+.food-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px;
+}
+
+/* ❤️ Heart Button */
+.heart-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem; 
+  cursor: pointer;
+  margin: 1rem 0;
+  transition: transform 0.2s ease, color 0.2s;
+}
+
+.heart-btn:hover {
+  transform: scale(1.1);
+}
+
+.heart-btn.active {
+  color: red;
+}
+
+.small-heart {
+  font-size: 1.8rem; 
+  margin-left: 8px;
+  margin-top: 0;
+}
+
+/* ❤️ Heart in Recipe Detail */
+.recipe-detail .heart-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 130px;  
+  background: #fff;
+  border: none;
+  font-size: 2.2rem; 
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  padding: 10px;
+  transition: transform 0.2s ease, color 0.2s;
+}
+
+.recipe-detail .heart-btn:hover {
+  transform: scale(1.2);
+}
+
+.recipe-detail .heart-btn.active {
+  color: red;
+}
+
+/* 🍴 Recipe Detail */
+.recipe-detail {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.recipe-detail h1,
+.recipe-detail-img {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recipe-detail-img {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0 auto 1rem;
+}
+
+.recipe-detail h1 {
+  margin-bottom: 1rem;
+}
+
+.recipe-detail h2 {
+  margin-top: 1.5rem;
+  color: #333;
+}
+
+.recipe-detail ul,
+.recipe-detail ol {
+  text-align: left;
+  margin: 1rem auto;
+  padding-left: 1.5rem;
+}
+
+/* 🔙 Floating Back Button */
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+  background: #e64a19;
+}
+
+/* 🇵🇭 Navbar */
+.navbar {
+  background: linear-gradient(90deg, #0038a8 0%, #ce1126 100%);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo::before {
+  content: "★";
+  color: #fcd116;
+  font-size: 1.3rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fcd116;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #ffffff;
+}
+
+.fav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.fav-count {
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+/* ✅ Keep hearts inline in Favorites */
+.favorites .heart-btn.inline-heart {
+  position: static !important;
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-size: 1.8rem;
+}
+
+.favorites .food-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.favorites .inline-heart {
+  margin-left: 8px;
+}
+
+.favorite-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  animation: fadeInOut 2s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+}
